@@ -83,37 +83,34 @@ TOOL_CATEGORIES = {
 
 
 def _find_and_execute_example(browser, example_name, category):
-    """Search the browser model for a registered example and execute it.
-
-    The examples browser stores registered examples internally via
-    register_example(). We walk the model to find the matching example
-    and call its execute_entrypoint callback.
-    """
-    # The browser model stores Example objects. Try common internal paths.
+    """Search the browser model for a registered example and execute it."""
     model = getattr(browser, "_browser_model", None)
     if model is None:
         return False
 
-    # model._examples is typically dict[category -> dict[name -> Example]]
-    examples_dict = getattr(model, "_examples", None)
-    if examples_dict and isinstance(examples_dict, dict):
-        cat_dict = examples_dict.get(category, {})
-        example = cat_dict.get(example_name)
-        if example is not None:
-            entrypoint = getattr(example, "execute_entrypoint", None)
+    # Collect every iterable attribute on the model that could hold examples
+    candidates = []
+    for attr_name in ("_examples", "_all_examples", "examples"):
+        obj = getattr(model, attr_name, None)
+        if obj is None:
+            continue
+        if isinstance(obj, dict):
+            # dict[category -> list[Example]] or dict[category -> dict[name -> Example]]
+            for val in obj.values():
+                if isinstance(val, list):
+                    candidates.extend(val)
+                elif isinstance(val, dict):
+                    candidates.extend(val.values())
+        elif isinstance(obj, list):
+            candidates.extend(obj)
+
+    # Search collected examples by name
+    for ex in candidates:
+        if getattr(ex, "name", None) == example_name:
+            entrypoint = getattr(ex, "execute_entrypoint", None)
             if callable(entrypoint):
                 entrypoint()
                 return True
-
-    # Fallback: iterate all examples if stored as a flat list
-    all_examples = getattr(model, "_all_examples", getattr(model, "examples", None))
-    if all_examples and hasattr(all_examples, "__iter__"):
-        for ex in all_examples:
-            if getattr(ex, "name", None) == example_name:
-                entrypoint = getattr(ex, "execute_entrypoint", None)
-                if callable(entrypoint):
-                    entrypoint()
-                    return True
 
     return False
 
