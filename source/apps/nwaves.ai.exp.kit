@@ -1,22 +1,74 @@
 [package]
-description = "Nwaves.ai - AI-Powered Simulation Platform"
+description = "Nwaves.ai - AI-Powered Robotics Simulation Platform"
 title = "Nwaves.ai"
 version = "0.1.0"
-
-keywords = ["experience", "app", "usd", "nwaves", "simulation"]
+keywords = ["experience", "app", "usd", "nwaves", "robotics", "simulation"]
 
 
 [dependencies]
+# Base Isaac Sim (includes core robotics, sensors, motion planning, cortex, etc.)
 "isaacsim.exp.base" = {}
+
+# Robotics UI and demos
+"isaacsim.examples.browser" = {}
+"isaacsim.examples.extension" = {}
+"isaacsim.examples.interactive" = {}
+"isaacsim.gui.components" = {}
+"isaacsim.robot.manipulators.examples" = {}
+"isaacsim.robot.manipulators.ui" = {}
+"isaacsim.robot.surface_gripper.ui" = {}
+"isaacsim.robot.wheeled_robots.ui" = {}
+
+# Robot setup tools
+"isaacsim.robot_setup.assembler" = {}
+"isaacsim.robot_setup.gain_tuner" = {}
+"isaacsim.robot_setup.grasp_editor" = {}
+"isaacsim.robot_setup.wizard" = {}
+"isaacsim.robot_setup.xrdf_editor" = {}
+
+# Sensor UI
+"isaacsim.sensors.camera.ui" = {}
+"isaacsim.sensors.physics.examples" = {}
+"isaacsim.sensors.physics.ui" = {}
+"isaacsim.sensors.physx.examples" = {}
+"isaacsim.sensors.physx.ui" = {}
+"isaacsim.sensors.rtx.ui" = {}
+
+# Replicator / synthetic data
+"isaacsim.replicator.behavior.ui" = {}
+"isaacsim.replicator.synthetic_recorder" = {}
+
+# Utilities
+"isaacsim.util.camera_inspector" = {}
+"isaacsim.util.merge_mesh" = {}
+"isaacsim.util.physics" = {}
+
+# Nwaves.ai custom extension
+"nwaves.ai.robotics" = {}
+
+# Kit UI essentials
+"omni.kit.uiapp" = {}
+"omni.kit.window.title" = {}
+"omni.kit.window.extensions" = {}
+"omni.kit.window.script_editor" = {}
 
 
 [settings.app]
 name = "Nwaves.ai"
 version = "0.1.0"
-settings.persistent = false
+settings.persistent = true
 window.title = "Nwaves.ai"
 vulkan = true
 enableDeveloperWarnings = false
+runLoops.main.rateLimitEnabled = true
+runLoops.main.manualModeEnabled = true
+player.useFixedTimeStepping = true
+
+[settings.app.exts.folders]
+'++' = [
+    "${app}",
+    "${app}/../../source/extensions",
+]
 
 [settings.exts."omni.kit.registry.nucleus"]
 registries = [

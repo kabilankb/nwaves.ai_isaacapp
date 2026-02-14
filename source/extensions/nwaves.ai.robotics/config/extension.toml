@@ -1,0 +1,16 @@
+[package]
+version = "0.1.0"
+category = "Simulation"
+title = "Nwaves.ai Robotics"
+description = "Nwaves.ai robotics application window for Isaac Sim"
+authors = ["Kabilan KB"]
+keywords = ["nwaves", "robotics", "simulation"]
+
+[dependencies]
+"isaacsim.core.api" = {}
+"isaacsim.gui.components" = {}
+"omni.kit.menu.utils" = {}
+"omni.kit.uiapp" = {}
+
+[[python.module]]
+name = "nwaves.ai.robotics"

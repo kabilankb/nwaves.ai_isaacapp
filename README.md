@@ -59,19 +59,35 @@ Run integration test:
 ./launch_nwaves.sh --test
 ```
 
+## Robotics Extensions
+
+The app launches with the **Nwaves.ai Robotics** window, which provides quick access to:
+
+- **Manipulation** - Articulation control, gripper control, gain tuning
+- **Navigation** - Wheeled robots, motion planning, Cortex behaviors
+- **Sensors** - Camera, lidar, contact, and IMU sensors
+- **Setup Tools** - Robot assembler, wizard, XRDF editor, grasp editor
+- **Synthetic Data** - Recorder, domain randomization, replicator
+
 ## Project Structure
 
 ```
-nwaves-sim/
+nwaves.ai_isaacapp/
 ├── .gitignore
 ├── .gitmodules
 ├── README.md
-├── nwaves_app.py              # Main application launcher
-├── launch_nwaves.sh           # Shell launch script
-├── leisaac/                   # LeIsaac framework (git submodule)
+├── nwaves_app.py                          # Main application launcher
+├── launch_nwaves.sh                       # Shell launch script
+├── leisaac/                               # LeIsaac framework (git submodule)
 └── source/
-    └── apps/
-        └── nwaves.ai.exp.kit  # Isaac Sim experience config
+    ├── apps/
+    │   └── nwaves.ai.exp.kit              # Isaac Sim experience config
+    └── extensions/
+        └── nwaves.ai.robotics/            # Custom robotics UI extension
+            ├── config/extension.toml
+            └── nwaves/ai/robotics/
+                ├── extension.py
+                └── window.py
 ```
 
 ## License
