@@ -2,13 +2,22 @@
 version = "0.1.0"
 category = "Simulation"
 title = "Nwaves.ai Robotics"
-description = "Nwaves.ai robotics application window for Isaac Sim"
+description = "Nwaves.ai robotics application window - centralized hub for Isaac Sim robotics tools and demos"
 authors = ["Kabilan KB"]
-keywords = ["nwaves", "robotics", "simulation"]
+keywords = ["nwaves", "robotics", "simulation", "manipulation", "navigation"]
 
 [dependencies]
 "isaacsim.core.api" = {}
+"isaacsim.examples.browser" = {}
 "isaacsim.gui.components" = {}
+"isaacsim.robot.manipulators" = {}
+"isaacsim.robot.manipulators.examples" = {}
+"isaacsim.robot.surface_gripper" = {}
+"isaacsim.robot.wheeled_robots" = {}
+"isaacsim.robot.policy.examples" = {}
+"isaacsim.robot_motion.motion_generation" = {}
+"isaacsim.cortex.framework" = {}
+"isaacsim.cortex.behaviors" = {}
 "omni.kit.menu.utils" = {}
 "omni.kit.uiapp" = {}
 
