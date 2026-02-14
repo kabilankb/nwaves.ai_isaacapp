@@ -1,0 +1,33 @@
+# Build artifacts
+_build/
+_*/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+*.so
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Omniverse / Kit
+*.packman.xml.user
+deps/**/user.toml
+PACKAGE-DEPS.yaml
+*.etli
+
+# Docker / container artifacts
+.nvidia-omniverse/
+.local/
+.cache/
+.omniverse_eula_accepted.txt
